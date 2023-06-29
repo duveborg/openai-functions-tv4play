@@ -1,4 +1,4 @@
-# Openai tv4play
+# Using openai functions with the tv4play API
 
 ## Setup
 1. Create an api key here: https://platform.openai.com/account/api-keys

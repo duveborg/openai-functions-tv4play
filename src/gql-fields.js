@@ -1,5 +1,6 @@
 
 export const movieFields = `
+__typename
 id
 genres
 playableFrom {
@@ -17,6 +18,7 @@ isLiveContent
 `
 
 export const clipFields = `
+__typename
 id
 description
 playableFrom {
@@ -30,6 +32,7 @@ main16x9 {
 `
 
 export const sportEventFields = `
+__typename
 id
 country
 arena
@@ -49,6 +52,7 @@ isLiveContent
 `
 
 export const episodeFields = `
+__typename
 id
 episodeNumber
 playableFrom {
@@ -62,6 +66,7 @@ seasonId
 `
 
 export const seriesFields = `
+__typename
 genres
 id
 synopsis {

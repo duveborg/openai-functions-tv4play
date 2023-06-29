@@ -1,8 +1,9 @@
 import { Configuration, OpenAIApi } from 'openai';
 import readline from 'readline';
-import { searchTv4Api, searchTv4ApiFunctionName, searchTv4ApiSchema } from './functions/tv4-api.js';
+import { searchTv4Api, searchTv4ApiFunctionName, searchTv4ApiSchema } from './functions/search-tv4-api.js';
 import { formatLinks, formatLinksFunctionName, formatsLinksSchema } from './functions/format-links.js'
 import dotenv from 'dotenv'
+import { fetchPopularPrograms, popularProgramsApiSchema, popularProgramsFunctionName } from './functions/popular-tv4-programs.js'
 dotenv.config()
 
 const configuration = new Configuration({
@@ -18,11 +19,13 @@ const rl = readline.createInterface({
 const functionSchemas = [
   formatsLinksSchema,
   searchTv4ApiSchema,
+  popularProgramsApiSchema
 ];
 
 const functions = {
   [searchTv4ApiFunctionName]: searchTv4Api,
   [formatLinksFunctionName]: formatLinks,
+  [popularProgramsFunctionName]: fetchPopularPrograms
 };
 
 rl.question('Search the tv4play graphql API for: ', async (question) => {
@@ -40,7 +43,7 @@ rl.question('Search the tv4play graphql API for: ', async (question) => {
           model: 'gpt-3.5-turbo-0613',
           messages,
           functions: functionSchemas,
-          temperature: 0.6, // Temp = 0 will only show a raw output, and the closer to 2 it will add more words to the response
+          temperature: 0.8, // Temp = 0 will only show a raw output, and the closer to 2 it will add more words to the response
         });
 
         return response;
